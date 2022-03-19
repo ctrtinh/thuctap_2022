@@ -4,6 +4,8 @@ namespace App\Providers;
 
 use App\Models\ThuongHieu;
 use App\Models\Loai;
+use Illuminate\Support\Facades\Auth;
+use App\Models\SanPhamYeuThich;
 use App\Models\DungLuong;
 use App\View\Composers\ProfileComposer;
 use Illuminate\Support\Facades\View;
@@ -33,6 +35,14 @@ class ViewServiceProvider extends ServiceProvider
             $type = ThuongHieu::orderBy('tenthuonghieu')->get();
             $view->with('type',$type);
         });
+
+        // if(Auth::check()){
+        //     View::composer('layouts.frontend', function ($view) {
+        //         $sanphamyeuthich = SanPhamYeuThich::where('user_id', Auth::user()->id)->get();
+        //         $view->with('sanphamyeuthich',$sanphamyeuthich);
+        //     });
+        // }
+        
         View::composer('layouts.frontend', function ($view) {
             $loai = Loai::orderBy('tenloai')->get();
             $view->with('loai',$loai);

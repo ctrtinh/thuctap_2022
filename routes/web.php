@@ -39,7 +39,7 @@ Route::get('/san-pham/{tensanpham_slug}', [HomeController::class, 'getSanPham_Ch
 Route::get('/thuong-hieu/{all}', [HomeController::class, 'getThuongHieu'])->name('frontend.thuonghieu');
 Route::get('/loai/{all}', [HomeController::class, 'getLoai'])->name('frontend.loai');
 Route::get('/dung-luong/{all}', [HomeController::class, 'getDungLuong'])->name('frontend.dungluong');
-Route::get('/gia', [HomeController::class, 'getGia'])->name('frontend.gia');
+// Route::get('/gia', [HomeController::class, 'getGia'])->name('frontend.gia');
 
 
 
@@ -85,6 +85,11 @@ Route::get('/khach-hang/dang-nhap', [HomeController::class, 'getDangNhap'])->nam
 Route::prefix('khach-hang')->group(function() {
     // Trang chủ tài khoản khách hàng
     Route::get('/', [KhachHangController::class, 'getHome'])->name('khachhang');
+
+    // Sản phẩm yêu thích
+    Route::get('/danh-sach-san-pham-yeu-thich', [KhachHangController::class, 'getSanPhamYeuThich'])->name('khachhang.danhsachsanpham');
+    Route::get('/them-san-pham-yeu-thich/{tensanpham_slug}', [KhachHangController::class, 'getThemSanPhamYeuThich'])->name('khachhang.sanphamthem');
+    Route::get('/xoa-san-pham-yeu-thich/{id}', [KhachHangController::class, 'getXoaSanPhamYeuThich'])->name('khachhang.sanpham');
     
     // Xem và cập nhật trạng thái đơn hàng
     Route::get('/donhang', [KhachHangController::class, 'getDonHang'])->name('khachhang.donhang');

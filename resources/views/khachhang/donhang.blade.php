@@ -28,6 +28,7 @@
             <li  style="padding-left: 5%;"><a href="{{ route('khachhang') }}" class="button button-header " style="width: 270px"> Trang chủ </a></li>
                 <li  style="padding-left: 5%;"><a href="{{ route('khachhang.donhang') }}" class="button button-header mt-1" style="width: 270px">Đơn hàng của tôi</a></li>
                 <li  style="padding-left: 5%;"><a href="{{ route('khachhang.hoso') }}" class="button button-header mt-1" style="width: 270px"> Thông tin cá nhân</a></li>
+                <li  style="padding-left: 5%;"><a href="{{route('khachhang.danhsachsanpham')}}" class="button button-header mt-1" style="width: 270px"> Sản phẩm yêu thích</a></li>
                 <li  style="padding-left: 5%;">
                   <a href="{{ route('logout') }}" class="button button-header mt-1" style="width: 270px" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                       Đăng xuất   
@@ -42,7 +43,7 @@
         <div class="col-lg-8 col-lx-4">
           <div class="single_confirmation_details">
             <h4>Chào Mừng {{Auth::user()->name}}.</h4>
-            <table class="order-rable">
+            <table class="table table-borderless">
                <thead>
                     <tr>
                         <th scope="col" width="20%">Điện thoại giao hàng</th>

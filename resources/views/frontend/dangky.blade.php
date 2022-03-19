@@ -30,51 +30,53 @@
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
-                   
+                    <div class="login_part_form">
+                        <div class="login_part_form_iner">
+                
                             <form class="row contact_form"action="{{ route('register') }}" method="post"  novalidate="novalidate">
-							@csrf
-                                <div class="col-md-12 form-group p_star">
-								<input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Họ và tên" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'"required />
-									@error('name')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-                                	 @enderror
-                                </div>
-                                <div class="col-md-12 form-group p_star">
-								<input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}"placeholder="Địa chỉ Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required />
-									@error('email')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-                                    @enderror
-                                </div>
-								<div class="col-md-12 form-group p_star">
-								<input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}" placeholder="Mật khẩu" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required />
-									@error('password')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-									@enderror
-                                </div>
-								<div class="col-md-12 form-group p_star">
-								<input type="password" class="form-control" id="password-confirm" name="password_confirmation" required autocomplete="new-password" placeholder="Xác nhận mật khẩu" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
-									@error('email')
-										<span class="invalid-feedback" role="alert">
-											<strong>{{ $message }}</strong>
-										</span>
-                                    @enderror
-                                </div>
-                                <div class="col-md-12 form-group">
-                                    <div class="creat_account d-flex align-items-center">
-                                        <input type="checkbox" id="f-option" name="selector">
-                                        <label for="f-option">Duy trì đăng nhập</label>
+                                @csrf
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control @error('name') is-invalid @enderror" id="name" name="name" value="{{ old('name') }}" placeholder="Họ và tên" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'"required />
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $message }}</strong>
+                                                </span>
+                                            @enderror
                                     </div>
-                                    <button type="submit" value="submit" class="btn_3">
-									Đăng ký
-                                    </button>
-                                  
-                                </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}"placeholder="Địa chỉ Email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required />
+                                            @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="password" class="form-control @error('password') is-invalid @enderror" id="password" name="password" value="{{ old('password') }}" placeholder="Mật khẩu" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required />
+                                        @error('password')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-12 form-group p_star">
+                                        <input type="password" class="form-control" id="password-confirm" name="password_confirmation" required autocomplete="new-password" placeholder="Xác nhận mật khẩu" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'">
+                                        @error('email')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <div class="creat_account d-flex align-items-center">
+                                            <input type="checkbox" id="f-option" name="selector">
+                                            <label for="f-option">Duy trì đăng nhập</label>
+                                        </div>
+                                        <button type="submit" value="submit" class="btn_3">
+                                         Đăng ký
+                                        </button>
+                                    
+                                    </div>
                             </form>
                         </div>
                     </div>
@@ -83,5 +85,4 @@
         </div>
     </section>
     <!--================login_part end =================-->
-
-    @endsection
+@endsection

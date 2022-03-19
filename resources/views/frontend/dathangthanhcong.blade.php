@@ -6,8 +6,8 @@
         <div class="col-lg-8">
           <div class="breadcrumb_iner">
             <div class="breadcrumb_iner_item">
-              <h2>Đặt Hàng Thành Công</h2>
-              <p>Home <span>-</span> Order Confirmation</p>
+              <h2>Đặt Hàng </h2>
+              <p>Trang Chủ <span>-</span>Đặt Hàng Thành Công </p>
             </div>
           </div>
         </div>
@@ -57,8 +57,9 @@
               </tbody>
               <tfoot>
                 <tr>
-                  <th scope="col" colspan="3">Tổng số lượng</th>
-                  <th scope="col">Tổng tiền {{ $cartsub }}</th>
+                  <th scope="col" colspan="2">Tổng số lượng</th>
+                  <th scope="col">{{ $cartcount }}</th>
+                  <th scope="col">Tổng tiền {{ $cartsub }} .vnd</th>
                 </tr>
               </tfoot>
             </table>

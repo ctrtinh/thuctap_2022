@@ -19,6 +19,11 @@
   <!--================Cart Area =================-->
   <section class="cart_area padding_top">
     <div class="container">
+    @if (session('status'))
+        <div id="AlertBox" class="alert alert-success hide" role="alert">
+            {!! session('status') !!}
+        </div>
+    @endif
       <div class="cart_inner">
         <div class="table-responsive">
           <table class="table">
@@ -37,7 +42,7 @@
                 <td>
                   <div class="media">
                     <div class="d-flex">
-                      <img src="{{ env('APP_URL') . '/storage/app/' . $value->options->image }}" alt="" />
+                      <img src="{{ env('APP_URL') . '/storage/app/' . $value->options->image }}"style="height:100px;width:100px; "alt="" />
                     </div>
                     <div class="media-body">
                       <p>{{ $value->name }}</p>
@@ -66,7 +71,7 @@
                   <h5>Tổng Tiền</h5>
                 </td>
                 <td>
-                  <h5>{{ number_format($value->price * $value->qty) }}</h5>
+                  <h5>{{ Cart::subtotal() }}</h5>
                 </td>
               </tr>
               <tr class="shipping_area">

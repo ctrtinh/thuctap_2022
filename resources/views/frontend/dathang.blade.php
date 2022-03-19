@@ -76,35 +76,35 @@
       </div>
       <div class="billing_details">
         <div class="row">
-          <div class="col-lg-8">
+          <div class="col-lg-7">
             <h3>Chi tiết thanh toán</h3>
             <form class="row contact_form"id="checkoutform" action="{{ route('frontend.dathang') }}" method="post" novalidate="novalidate">
             @csrf
               <div class="col-md-12 form-group p_star">
-              <input type="text" class="form-control @error('user_id') is-invalid @enderror" id="name" name="name" placeholder="Họ và tên *" value="{{ Auth::user()->name ?? '' }}" required />
-              @error('user_id')
-                <span class="placeholder" data-placeholder="First name">{{ $message }}</span>
-                @enderror
+                  <input type="text" class="form-control @error('user_id') is-invalid @enderror" id="name" name="name" placeholder="Họ và tên *" value="{{ Auth::user()->name ?? '' }}" required />
+                  @error('user_id')
+                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                  @enderror
               </div>
               <div class="col-md-12 form-group p_star">
-                <input type="text" class="form-control @error('diachigiaohang') is-invalid @enderror" id="diachigiaohang" name="diachigiaohang" placeholder="Địa chỉ giao hàng *" required />
-                @error('diachigiaohang')
-                <span class="placeholder" data-placeholder="Last name">{{ $message }}</span>
-                @enderror
+                  <input type="text" class="form-control @error('diachigiaohang') is-invalid @enderror" id="diachigiaohang" name="diachigiaohang" placeholder="Địa chỉ giao hàng *" required />
+                  @error('diachigiaohang')
+                      <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                  @enderror
               </div>
  
               <div class="col-md-6 form-group p_star">
-              <input type="text" class="form-control @error('dienthoaigiaohang') is-invalid @enderror" id="dienthoaigiaohang" name="dienthoaigiaohang" placeholder="Điện thoại *" required />
-              @error('dienthoaigiaohang')
-                <span class="placeholder" data-placeholder="Phone number">{{ $message }}</span>
+                <input type="text" class="form-control @error('dienthoaigiaohang') is-invalid @enderror" id="dienthoaigiaohang" name="dienthoaigiaohang" placeholder="Điện thoại *" required />
+                @error('dienthoaigiaohang')
+                    <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                 @enderror
               </div>
               <div class="col-md-6 form-group p_star">
-              <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Địa chỉ Email *" value="{{ Auth::user()->email ?? '' }}" required />
-              @error('email')
-                <span class="placeholder" data-placeholder="Email Address">{{ $message }}</span>
-                @enderror
-              </div>
+                <input type="text" class="form-control @error('email') is-invalid @enderror" id="email" name="email" placeholder="Địa chỉ Email *" value="{{ Auth::user()->email ?? '' }}" required />
+                  @error('email')
+                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
+                    @enderror
+                </div>
              
               <div class="col-md-12 form-group">
                 <div class="creat_account">
@@ -115,7 +115,7 @@
               </div>
             </form>
           </div>
-          <div class="col-lg-4">
+          <div class="col-lg-5">
             <div class="order_box">
               <h2>Đơn hàng của bạn</h2>
               <ul class="list">
@@ -124,19 +124,19 @@
                     <span>Thành tiền</span>
                   </a>
                 </li>
-                <li>
                 @foreach(Cart::content() as $value)
+                <li>
                   <a href="#">{{ $value->name }}
                     <span class="middle">x {{ $value->qty }}</span>
                     <span class="last">{{ number_format($value->price * $value->qty) }}</span>
                   </a>
-                  @endforeach    
-                </li>         
+                </li>   
+                @endforeach        
               </ul>
               <ul class="list list_2">
                 <li>
                   <a href="#">Tổng tiền
-                    <span>{{ Cart::subtotal() }}</span>
+                    <span>{{ Cart::subtotal() }} .vnd</span>
                   </a>
                 </li>
                 <li>

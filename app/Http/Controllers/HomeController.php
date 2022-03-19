@@ -158,7 +158,7 @@ class HomeController extends Controller
             $orm->save();
             session()->put($idXem, 1);
         }
-        return view('frontend.baiviet_chitiet',compact('baiviet','binhluan', "chude"));
+        return view('frontend.baiviet_chitiet',compact('baiviet','binhluan', 'chude'));
     }
 
     public  function getBaiViet($chude='')
@@ -201,7 +201,7 @@ class HomeController extends Controller
         $messages = [
             'noidung.required' => 'Nội dung bình luận không được bỏ trống.',
         ]);
-        
+        $chude = ChuDe::all();
         $baiviet = BaiViet::where('tieude_slug', $tieude_slug)->first();
         $binhluan = BinhLuan::where('baiviet_id', $baiviet->id)->where('hienthi', 1)->get();
 
@@ -212,7 +212,7 @@ class HomeController extends Controller
         $orm->save();
         session()->flash('success', 'Bình luận của bạn đã được ghi nhận');
 
-        return view('frontend.baiviet_chitiet', compact('baiviet','binhluan'));
+        return view('frontend.baiviet_chitiet', compact('baiviet','binhluan', 'chude'));
     }
 
     public function LayHinhDauTien($strNoiDung)
@@ -309,11 +309,11 @@ class HomeController extends Controller
             session()->put('select1', 'default');
         }
 
-        $sanpham = SanPham::select( 'sanpham.*',
-        DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-        ->where('sanpham.hienthi',1)
-        ->where('sanpham.soluong','>',0)
-        ->paginate(9);
+        // $sanpham = SanPham::select( 'sanpham.*',
+        // DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
+        // ->where('sanpham.hienthi',1)
+        // ->where('sanpham.soluong','>',0)
+        // ->paginate(9);
 
         $topsanpham = SanPham::leftJoin('donhang_chitiet', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
         ->select('sanpham.*',
@@ -406,18 +406,18 @@ class HomeController extends Controller
         ->where('sanpham.soluong','>',0)
         ->paginate(8);
         
-        $topsanpham = SanPham::leftJoin('donhang_chitiet', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
-        ->select('sanpham.*',
-            DB::raw('sum(donhang_chitiet.soluongban) AS tongsoluongban'),
-            DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh')
-        )            
-        ->groupBy('sanpham.id')
-        ->orderBy('tongsoluongban', 'desc')
-        ->where('hienthi',1)
-        ->where('sanpham.soluong','>',0)
-        ->limit(8)->get();
+        // $topsanpham = SanPham::leftJoin('donhang_chitiet', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
+        // ->select('sanpham.*',
+        //     DB::raw('sum(donhang_chitiet.soluongban) AS tongsoluongban'),
+        //     DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh')
+        // )            
+        // ->groupBy('sanpham.id')
+        // ->orderBy('tongsoluongban', 'desc')
+        // ->where('hienthi',1)
+        // ->where('sanpham.soluong','>',0)
+        // ->limit(8)->get();
 
-        return view('frontend.sanpham_chitiet',compact('sanpham','hinhanh', 'topsanpham', 'sanphammoi'));
+        return view('frontend.sanpham_chitiet',compact('sanpham','hinhanh', 'sanphammoi'));
     }
     
     public function getGioHang()
@@ -446,7 +446,7 @@ class HomeController extends Controller
             ]
         ]);
 
-        return redirect()->route('frontend')->with('status', 'Đã thêm sản phẩm vào giỏ hàng');;
+        return redirect()->route('frontend')->with('status', 'Đã thêm sản phẩm vào giỏ hàng');
     }
     public function getGioHang_ThemChiTiet(Request $request, $tensanpham_slug)
     {
@@ -744,38 +744,5 @@ class HomeController extends Controller
  
     }
 
-    public function getGia(Request $request)
-    {
-		
-
-       
-
-        // $sanpham = SanPham::select( 'sanpham.*',
-        // DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-        // ->where('sanpham.hienthi',1)
-        // ->where('sanpham.dongia')
-        // ->paginate(9);
-        // $session_title = "Dung lượng";
-
-        // $topsanpham = SanPham::leftJoin('donhang_chitiet', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
-        // ->select('sanpham.*',
-        //     DB::raw('sum(donhang_chitiet.soluongban) AS tongsoluongban'),
-        //     DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh')
-        // )            
-        // ->groupBy('sanpham.id')
-        // ->orderBy('tongsoluongban', 'desc')
-        // ->where('hienthi',1)
-        // ->where('sanpham.soluong','>',0)
-        // ->limit(10)->get();
-        // return view('frontend.index',compact('sanpham','session_title', 'topsanpham', 'min_price', 'max_price'));
-          
-        
- 
-    }
-
-
-
-
-  
 
 }

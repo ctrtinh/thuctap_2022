@@ -22,7 +22,7 @@
             <div class="row">
                 <div class="col-lg-8 mb-5 mb-lg-0">
                     <div class="blog_left_sidebar">
-                    @foreach($baiviet as $value)
+                        @foreach($baiviet as $value)
                         <article class="blog_item">
                             <div class="blog_item_img">
                                     @php
@@ -85,19 +85,16 @@
                         <aside class="single_sidebar_widget post_category_widget">
                             <h4 class="widget_title">Chủ đề</h4>
                             <ul class="list cat-list">
-                            @foreach($chude as $value)
-                                <li>
-                                    <a href="{{route('frontend.baiviet_chude',['chude' => $value->tenchude_slug])}}" class="d-flex">
-                                        <p>{{$value->tenchude}}</p>
-                                     
-                                    </a>
-                                </li>
+                                @foreach($chude as $value)
+                                    <li>
+                                        <a href="{{route('frontend.baiviet_chude',['chude' => $value->tenchude_slug])}}" class="d-flex">
+                                            <p>{{$value->tenchude}}</p>
+                                        
+                                        </a>
+                                    </li>
                                 @endforeach
                             </ul>
                         </aside>
-
-                      
-
 
                         <aside class="single_sidebar_widget newsletter_widget">
                             <h4 class="widget_title">

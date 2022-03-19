@@ -38,11 +38,11 @@
           <div class="s_product_text">
             <h5>Chi Tiết <span>|</span> sản phẩm</h5>
             <h3>{{$sanpham->tensanpham}}</h3>
-            <h2>{{ number_format($sanpham->dongia )}}</h2>
+            <h2>{{ number_format($sanpham->dongia )}} .vnd</h2>
             <ul class="list">
               <li>
-                <a class="active" href="#">
-                  <span>Loại camera</span> : {{$sanpham->loai->tenloai}}</a>
+                <a class="" href="#">
+                  <span>Dung lượng:</span> MicroSD  ≤ {{$sanpham->dungluong->dungluong}}</a>
               </li>
               <li>
                 <a href="#"> <span>Thương hiệu</span> : {{$sanpham->thuonghieu->tenthuonghieu}}</a>
@@ -54,12 +54,9 @@
                 @csrf
                   <div class="product_count">
                     <input class="input-number" name="qty" type="number" value="1" min="1" max="10">
-                   
-                    
                   </div>
                   <button  type="submit"  class="btn_3 ml-2">Thêm vào giỏ</button>
-                  
-                </form>
+              </form>
             </div>
           </div>
         </div>
@@ -100,9 +97,9 @@
                
               </tbody>
             </table>
+            <hr>
           </div>
         </div>
-        
       </div>
     </div>
   </section>
@@ -123,10 +120,10 @@
           <div class="best_product_slider owl-carousel">
           @foreach($sanphammoi as $value)
             <div class="single_product_item">
-              <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:200px;" alt="">
+              <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:200px;" alt=""></a>
               <div class="single_product_text">
                 <h4>{{ $value->tensanpham }}</h4>
-                <h3>{{ number_format($value->dongia) }}</h3>
+                <h3>{{ number_format($value->dongia) }} .vnd</h3>
               </div>
             </div>
             @endforeach 

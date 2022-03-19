@@ -28,6 +28,7 @@
             <li  style="padding-left: 5%;"><a href="{{ route('khachhang') }}" class="button button-header " style="width: 270px"> Trang chủ </a></li>
                 <li  style="padding-left: 5%;"><a href="{{ route('khachhang.donhang') }}" class="button button-header mt-1" style="width: 270px">Đơn hàng của tôi</a></li>
                 <li  style="padding-left: 5%;"><a href="{{ route('khachhang.hoso') }}" class="button button-header mt-1" style="width: 270px"> Thông tin cá nhân</a></li>
+                <li  style="padding-left: 5%;"><a href="{{route('khachhang.danhsachsanpham')}}" class="button button-header mt-1" style="width: 270px"> Sản phẩm yêu thích</a></li>
                 <li  style="padding-left: 5%;">
                   <a href="{{ route('logout') }}" class="button button-header mt-1" style="width: 270px" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                       Đăng xuất   
@@ -53,12 +54,12 @@
             </thead>
             <tbody>
                 @foreach($donhang as $value)
-                <tr>
-                    <th>{{ $value->SanPham->tensanpham }}</th>
-                    <th>{{ $value->soluongban }}</th>
-                    <th>{{  number_format($value->dongiaban) }}</th>
-                    <th>{{ number_format($value->dongiaban * $value->soluongban) }}</th>
-                </tr>
+                  <tr>
+                      <th>{{ $value->SanPham->tensanpham }}</th>
+                      <th>{{ $value->soluongban }}</th>
+                      <th>{{  number_format($value->dongiaban) }}</th>
+                      <th>{{ number_format($value->dongiaban * $value->soluongban) }}</th>
+                  </tr>
                 @endforeach
             </tbody>
             

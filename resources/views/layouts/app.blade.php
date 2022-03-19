@@ -29,7 +29,7 @@
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{route('admin.home')}}">
                     <div class="sidebar-brand-icon rotate-n-15">
                         <!-- <i class="fas fa-laugh-wink"></i> -->
-                        <img src="{{ asset('public/assets/img/come (1).png')}}" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
+                        <img src="{{ asset('public/admin/img/logo/cctv.png')}}" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
                     </div>
                     <div class="sidebar-brand-text mx-3">CameraStore</div>
                 </a>
@@ -42,7 +42,7 @@
                     </div>
                 </div>    
                 <hr class="sidebar-divider my-0">
-        @guest
+         @guest
             @if (Route::has('login'))
                 <li class="nav-item">
                     <a class="nav-link active" href="{{ route('login') }}"><i class="fas fa-sign-in-alt"> Đăng nhập </i></a>
@@ -132,7 +132,7 @@
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-            @endguest   
+        @endguest   
 
         </ul>
         <div id="content-wrapper" class="d-flex flex-column">
@@ -175,11 +175,8 @@
                                     </div>
                                 </form>
                             </div>
+                        </li>   
                         </li>
-
-                        
-                        </li>
-
                     </ul>
 
                 </nav>

@@ -2,14 +2,15 @@
     <thead>
     <tr>
        
-        <th width="15">Thương hiệu</th>
         <th width="15">Loại</th>
+        <th width="15">Thương hiệu</th>
         <th width="15">Dung lượng</th>
         <th width="70">Tên sản phẩm</th>
         <th width="15">Số lượng </th>
         <th width="15">Đơn giá</th>
-        <th width="50">Hình ảnh</th>
+        <th width="50">Cấu hình</th>
         <th width="50">Mô tả</th>
+        <th width="50">Hình ảnh</th>
     </tr>
     </thead>
     <tbody>
@@ -21,6 +22,8 @@
                 <td>{{ $value->tensanpham }}</td>
                 <td>{{ $value->soluong }}</td>
                 <td>{{ $value->dongia }}</td> 
+                <td>{{ $value->cauhinh }}</td> 
+                <td>{{ $value->motasanpham }}</td> 
                 @php
                     $chuoi = '';
                     $arr = array();
@@ -34,7 +37,7 @@
                     $chuoi = implode("?", $arr); 
                 @endphp
                 <td>{{ $chuoi }}</td>
-                <td>{{ $value->motasanpham }}</td> 
+               
             </tr>
         @endforeach
     </tbody>

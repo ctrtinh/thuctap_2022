@@ -87,7 +87,7 @@
                       </div>
                       <div class="hearer_icon d-flex">
                           <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
-                          
+                          <!-- @if (Auth::check())<a href="{{route('khachhang.danhsachsanpham')}}"> <i class="ti-heart"></i> <sup class="badge rounded-circle bg-white">@if(!empty($sanphamyeuthich)){{ $sanphamyeuthich->count()  }} @endif  <sup></a>@endif -->
                             @if (!isset( Auth::user()->name))
                               <a href="{{route('khachhang.dangnhap')}}"><i class="ti-user"></i></a>
                             @else
@@ -108,8 +108,8 @@
       </div>
       <div class="search_input" id="search_input_box">
             <div class="container ">
-                <form class="d-flex justify-content-between search-inner">
-                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                <form class="d-flex justify-content-between search-inner" action="{{route('frontend.search')}}" method="get">
+                    <input type="text" class="form-control" name="key" id="search_input" placeholder="Search Here">
                     <button type="submit" class="btn"></button>
                     <span class="ti-close" id="close_search" title="Close Search"></span>
                 </form>

@@ -39,6 +39,8 @@ class SanPhamImport implements ToModel, WithHeadingRow
             'tensanpham_slug' => Str::slug($row['ten_san_pham']),
             'soluong' => $row['so_luong'],
             'dongia' => $row['don_gia'],
+            'cauhinh' => $row['cau_hinh'],
+            'motasanpham' => $row['mo_ta'],
         ]);
 
         $spreadsheet = IOFactory::load(request()->file('file_excel'));

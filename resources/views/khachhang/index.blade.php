@@ -28,12 +28,13 @@
             <li  style="padding-left: 5%;"><a href="{{ route('khachhang') }}" class="button button-header " style="width: 270px"> Trang chủ </a></li>
                 <li  style="padding-left: 5%;"><a href="{{ route('khachhang.donhang') }}" class="button button-header mt-1" style="width: 270px">Đơn hàng của tôi</a></li>
                 <li  style="padding-left: 5%;"><a href="{{ route('khachhang.hoso') }}" class="button button-header mt-1" style="width: 270px"> Thông tin cá nhân</a></li>
+                <li  style="padding-left: 5%;"><a href="{{route('khachhang.danhsachsanpham')}}" class="button button-header mt-1" style="width: 270px"> Sản phẩm yêu thích</a></li>
                 <li  style="padding-left: 5%;">
                   <a href="{{ route('logout') }}" class="button button-header mt-1" style="width: 270px" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
                       Đăng xuất   
                   </a>
                   <form id="logout-form" action="{{ route('logout') }}" method="post" class="d-none">
-                    @csrf
+                     @csrf
                   </form>
                 </li>
             </ul>

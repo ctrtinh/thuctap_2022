@@ -22,7 +22,8 @@
                                     <img class="" src="{{asset('public/frontend/img/008 (1) (1).png') }}" alt="">
                                 </div>
                             </div>
-                        </div><div class="single_banner_slider">
+                        </div>
+                        <div class="single_banner_slider">
                             <div class="row">
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
@@ -37,7 +38,8 @@
                                 <img class="" src="{{asset('public/frontend/img/008 (1) (1).png') }}" alt="">
                                 </div>
                             </div>
-                        </div><div class="single_banner_slider">
+                        </div>
+                        <div class="single_banner_slider">
                             <div class="row">
                                 <div class="col-lg-5 col-md-8">
                                     <div class="banner_text">
@@ -81,6 +83,11 @@
     <!-- product_list start-->
     <section class="product_list section_padding">
         <div class="container">
+            @if(session()->has('status'))
+                <div class="alert alert-success">
+                    {{ session()->get('status') }}
+                </div>
+            @endif
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="section_tittle text-center">
@@ -93,14 +100,16 @@
                     <div class="product_list_slider owl-carousel">
                         <div class="single_product_list_slider">
                             <div class="row align-items-center justify-content-between">
-                            @foreach($topsanpham as $value)
+                                @foreach($topsanpham as $value)
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="single_product_item">
-                                    <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" >    <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" alt=""></a>
+                                        <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:210px;" alt=""></a>
+                                        <h4 class="namesanpham"><a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" >{{ $value->tensanpham }}</a></h4>
+                                           
                                         <div class="single_product_text">
-                                            <h4>{{ $value->tensanpham }}</h4>
-                                            <h3>{{ number_format($value->dongia) }}</h3>
-                                            <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="add_cart">+ Thêm vào giỏ<i class="ti-heart"></i></a>
+                                        <h3 class="gia">{{ number_format($value->dongia) }} .vnd</h3>
+                                            <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="add_cart">+ Thêm vào giỏ</a>
+                                            @if (Auth::check())<a class="d-flex justify-content-end" href="{{route('khachhang.sanphamthem',['tensanpham_slug'=>$value->tensanpham_slug])}}"> <i class="ti-heart"></i></a>@endif
                                         </div>
                                     </div>
                                 </div>
@@ -131,7 +140,7 @@
                         <div class="input-group">
                           
                             <div class="input-group-append">
-                                <a href="#" class="input-group-text btn_2" id="basic-addon2">Đăng ký ngay</a>
+                                <a href="{{route('khachhang.dangky')}}" class="input-group-text btn_2" id="basic-addon2">Đăng ký ngay</a>
                             </div>
                         </div>
                     </div>
@@ -154,12 +163,12 @@
             <div class="row align-items-center justify-content-between">
                 <div class="col-lg-12">
                     <div class="best_product_slider owl-carousel">
-                    @foreach($sanphammoi as $value)
+                     @foreach($sanphammoi as $value)
                         <div class="single_product_item">
-                        <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" >  <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:230px;" alt=""></a>
+                            <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" >  <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:230px;" alt=""></a>
                             <div class="single_product_text">
                                 <h4>{{ $value->tensanpham }}</h4>
-                                <h3>{{ number_format($value->dongia) }}</h3>
+                                <h3>{{ number_format($value->dongia) }} .vnd</h3>
                             </div>
                         </div>
                         @endforeach 
@@ -198,10 +207,10 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-12">
-                @foreach($locth as $value)
-                    <div class="single_client_logo">
-                        <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:100px;width:100px;"alt="">
-                    </div>
+                  @foreach($locth as $value)
+                        <div class="single_client_logo">
+                            <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:100px;width:100px;"alt="">
+                        </div>
                     @endforeach
                     <!-- <div class="single_client_logo">
                         <img src="img/client_logo/client_logo_2.png" alt="">
@@ -234,5 +243,28 @@
             </div>
         </div>
     </section>
+<style>
+.namesanpham a{
+  color: #000;
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 500;
+  display: block;
+  margin-top: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  text-align: center;
+}
+.gia {
+  color: #000;
+  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 500;
+  display: block;
+  margin-top: 10px;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+}
+</style>
     <!--::subscribe_area part end::-->
-    @endsection
+@endsection
