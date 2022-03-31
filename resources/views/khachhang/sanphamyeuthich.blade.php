@@ -47,7 +47,7 @@
                 </td>
                 <td class="li-product-add-cart">
                   <div class="product_count">
-                    <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' =>$value->SanPham->tensanpham_slug]) }}">add to cart</a>
+                    <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' =>$value->SanPham->tensanpham_slug]) }}">Thêm vào giỏ</a>
                   </div>
                 </td>
                 <td><a href="{{ route('khachhang.sanpham', ['id' => $value->id]) }}"><i class="fas fa-trash-alt"></i></a></td>

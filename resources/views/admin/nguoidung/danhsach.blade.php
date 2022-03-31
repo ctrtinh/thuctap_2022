@@ -27,8 +27,9 @@
                         <th width="5%">#</th>
                         <th width="20%">Họ và tên</th>
                         <th width="20%">Tên đăng nhập</th>
-                        <th width="35%">Email</th>
+                        <th width="30%">Email</th>
                         <th width="10%">Quyền hạn</th>
+                        <th width="5%">Kích hoạt</th>
                         <th width="5%">Sửa</th>
                         <th width="5%">Xóa</th>
                     </tr>
@@ -50,6 +51,13 @@
 
                             @endif
                         </td>
+                        <td class="text-center">
+                                @if($value->kichhoat == 0)
+                                    <a href="{{ route('admin.nguoidung.kichhoat', ['id' => $value->id]) }}"><i class="fas fa-check-circle"></i></a>
+                                @else
+                                    <a href="{{ route('admin.nguoidung.kichhoat', ['id' => $value->id]) }}"><i class="fas fa-ban text-danger"></i></a>           
+                                @endif
+                            </td>
                         <td class="text-center"><a href="{{ route('admin.nguoidung.sua', ['id' => $value->id]) }}"><i class="fas fa-edit"></i></a></td>
                         <td class="text-center"><a href="{{ route('admin.nguoidung.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa người dùng {{ $value->name}} không?')"><i class="fas fa-trash-alt text-danger"></i></a></td>
                     </tr>

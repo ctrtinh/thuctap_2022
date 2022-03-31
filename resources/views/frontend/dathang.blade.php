@@ -104,13 +104,13 @@
                   @error('email')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror
-                </div>
+              </div>
              
               <div class="col-md-12 form-group">
                 <div class="creat_account">
                   <h3>Chi tiết vận chuyển?</h3>
                 </div>
-                <textarea class="form-control" name="chitietgiaohang" id="chitietgiaohang" rows="1"
+                <textarea class="form-control @error('chitietgiaohang') is-invalid @enderror" name="chitietgiaohang" id="chitietgiaohang" rows="1"
                   placeholder="Nội dung"></textarea>
               </div>
             </form>
@@ -126,7 +126,7 @@
                 </li>
                 @foreach(Cart::content() as $value)
                 <li>
-                  <a href="#">{{ $value->name }}
+                  <a href="#"> <?php echo Str::limit($value->name, 30); ?> 
                     <span class="middle">x {{ $value->qty }}</span>
                     <span class="last">{{ number_format($value->price * $value->qty) }}</span>
                   </a>
@@ -146,36 +146,38 @@
                 </li>
               
               </ul>
-              <!-- <div class="payment_item">
+              <div class="payment_item">
                 <div class="radion_btn">
                   <input type="radio" id="f-option5" name="selector" />
-                  <label for="f-option5">Check payments</label>
+                  <label for="f-option5">Kiểm tra các khoản thanh toán</label>
                   <div class="check"></div>
                 </div>
                 <p>
-                  Please send a check to Store Name, Store Street, Store Town,
-                  Store State / County, Store Postcode.
+                Vui lòng gửi séc đến Tên cửa hàng, Phố cửa hàng, Thị trấn cửa hàng,
+                  Lưu trữ thị trấn / Quận, Lưu trữ Mã bưu điện.
+
                 </p>
               </div>
               <div class="payment_item active">
                 <div class="radion_btn">
                   <input type="radio" id="f-option6" name="selector" />
                   <label for="f-option6">Paypal </label>
-                  <img src="img/product/single-product/card.jpg" alt="" />
+                  <img src="{{asset('public/frontend/img/product/single-product/card.jpg' ) }}" alt="" />
                   <div class="check"></div>
                 </div>
                 <p>
-                  Please send a check to Store Name, Store Street, Store Town,
-                  Store State / County, Store Postcode.
+                
+                  Vui lòng gửi séc đến Tên cửa hàng, Phố cửa hàng, Thị trấn cửa hàng,
+                  Lưu trữ Thị trấn / Quận, Lưu trữ Mã bưu điện.
                 </p>
-              </div> -->
+              </div>
               <!-- <div class="creat_account">
                 <input type="checkbox" id="f-option4" name="selector" />
                 <label for="f-option4">I’ve read and accept the </label>
                 <a href="#">terms & conditions*</a>
               </div> -->
              
-              <a class="button btn_3" onclick="event.preventDefault();document.getElementById('checkoutform').submit();" href="{{ route('frontend.dathang') }}">Tiến hành đặt hàng</a>
+              <a class="button btn_3 mt-3" onclick="event.preventDefault();document.getElementById('checkoutform').submit();" href="{{ route('frontend.dathang') }}">Tiến hành đặt hàng</a>
             </div>
           </div>
         </div>

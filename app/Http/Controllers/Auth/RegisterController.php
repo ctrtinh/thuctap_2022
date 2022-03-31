@@ -83,13 +83,13 @@ class RegisterController extends Controller
         ]);
     }
 
-    // public function Register(Request $request)
-    // {
-    //     $this->validator($request->all())->validate();
+    public function Register(Request $request)
+    {
+        $this->validator($request->all())->validate();
 
-    //     event(new Registered($user = $this->create($request->all())));
+        event(new Registered($user = $this->create($request->all())));
 
-    //     return redirect()->route('khachhang.dangnhap')->with('status', 'Bạn đã đăng ký tài khoản thành công');
-    // }
+        return redirect()->route('khachhang.dangnhap')->with('status', 'Bạn đã đăng ký tài khoản thành công');
+    }
     
 }

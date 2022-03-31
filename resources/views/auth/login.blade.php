@@ -114,7 +114,11 @@
 <body class="bg-gradient-primary">
 
     <div class="container">
-
+    @if(session()->has('success'))
+            <div class="alert alert-success thongbao">
+               {{ session()->get('success') }}
+            </div>
+    @endif
         <div class="row justify-content-center">
 
             <div class="col-xl-10 col-lg-12 col-md-9">

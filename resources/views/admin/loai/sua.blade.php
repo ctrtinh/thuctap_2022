@@ -1,8 +1,8 @@
 @extends('layouts.app')
-@section('title', 'Loại đồng hồ')
+@section('title', 'Loại Camera')
 @section('content')
  <div class="card">
-    <div class="card-header">Sửa loại đồng hồ</div>
+    <div class="card-header">Sửa loại Camera</div>
     <div class="card-body table-responsive">
     <form action="{{ route('admin.loai.sua',['id' => $loai -> id]) }}" method="post">
         @csrf

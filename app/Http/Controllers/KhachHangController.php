@@ -13,6 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\DB;
 
+
 class KhachHangController extends Controller
 {
     public function __construct()
@@ -22,7 +23,17 @@ class KhachHangController extends Controller
     
     public function getHome()
     {
-        return view('khachhang.index');
+        if(Auth::user()->kichhoat == 0)
+		{
+			return view('khachhang.index');
+		}
+		elseif(Auth::user()->kichhoat == 1)
+		{
+			Auth::logout();
+			return redirect()->route('khachhang.dangnhap')->with('status','Tài Khoản Đã Bị Khóa');
+		}
+        
+       
     }
     
     public function getDonHangHuy($id)
@@ -80,13 +91,14 @@ class KhachHangController extends Controller
     
     public function getSanPhamYeuThich()
     {
-        if(SanPhamYeuThich::count() <= 0)
+        if(SanPhamYeuThich::where('user_id', auth::user()->id)->count() <= 0)
             return view('khachhang.sanphamyeuthich_rong');
         else
             
         $danhsach = SanPhamYeuThich::join('sanpham', 'sanpham.id', '=', 'sanphamyeuthich.sanpham_id')
             ->select('sanphamyeuthich.*',
             DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
+            ->where('user_id', auth::user()->id)
             ->get();
         //dd($danhsach);
         return view('khachhang.sanphamyeuthich',compact('danhsach'));
@@ -104,8 +116,8 @@ class KhachHangController extends Controller
     public function getThemSanPhamYeuThich ($tensanpham_slug)
     {
         $sanpham = SanPham::where('tensanpham_slug', $tensanpham_slug)->first();
-
-        $sanphamyeuthich = SanPhamYeuThich::where('sanpham_id',$sanpham->id)->first();
+       
+        $sanphamyeuthich = SanPhamYeuThich::where('sanpham_id',$sanpham->id)->where('user_id', auth::user()->id)->first();
 
         if(empty($sanphamyeuthich))
         {

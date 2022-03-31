@@ -47,6 +47,10 @@ class ViewServiceProvider extends ServiceProvider
             $loai = Loai::orderBy('tenloai')->get();
             $view->with('loai',$loai);
         });
+        View::composer('layouts.frontend', function ($view) {
+            $dungluong = DungLuong::orderBy('dungluong')->get();
+            $view->with('dungluong',$dungluong);
+        });
         View::composer('frontend.thuonghieu', function ($view) {
             $locloai = Loai::orderBy('tenloai')->get();
             $view->with('locloai',$locloai);

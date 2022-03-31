@@ -27,7 +27,7 @@
                             <td class="text-end">{{ number_format($value->dongiaban) }}<sup><u>đ</u></sup></td>
                             <td class="text-end">{{ number_format($value->soluongban * $value->dongiaban) }}<sup><u>đ</u></sup></td>
                             <td class="text-center"><a href="{{ route('admin.donhang.chitiet.sua', ['id' => $value->id]) }}"><i class="fas fa-edit"></i></a></td>
-                            <td class="text-center"><a href="{{ route('admin.donhang.chitiet.xoa', ['id' => $value->id]) }}"><i class="fas fa-trash-alt text-danger"></i></a></td>
+                            <td class="text-center"><a href="{{ route('admin.donhang.chitiet.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa đơn hàng {{ $value->SanPham->tensanpham }} không?')"><i class="fas fa-trash-alt text-danger"></i></a></td>
                         </tr>
                     @endforeach
                 </tbody>

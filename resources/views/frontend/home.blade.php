@@ -79,15 +79,76 @@
         </div>
     </section>
     <!-- banner part start-->
-
+         <section class="feature_part padding_top">          
+            <div class="container">
+                @if(session()->has('status'))
+                    <div class="alert alert-success">
+                        {{ session()->get('status') }}
+                    </div>
+                @endif
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <div class="section_tittle text-center">
+                            <h2>Sản phẩm dành cho bạn</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row align-items-center justify-content-between">
+                    <div class="col-lg-7 col-sm-6">
+                        <div class="single_feature_post_text">
+                            <p>Sản phẩm trong nhà</p>
+                            <h3>Gia đình văn phòng</h3>
+                            @foreach($loai1 as $value)
+                                <a href="{{route('frontend.loai',['all' => $value->tenloai_slug])}}" class="feature_btn"
+                                    >Khám phá ngay   <i class="fas fa-play"></i
+                                ></a>
+                            @endforeach    
+                            <img src="{{asset('public/frontend/img/feature/giadinhvanphong.png') }}" alt="" />
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-sm-6">
+                        <div class="single_feature_post_text">
+                            <p>Sản phẩm hỗ trợ</p>
+                            <h3>Hỗ trợ máy tính</h3>
+                            @foreach($loai2 as $value)
+                                <a href="{{route('frontend.loai',['all' => $value->tenloai_slug])}}" class="feature_btn"
+                                    >Khám phá ngay  <i class="fas fa-play"></i
+                                ></a>
+                            @endforeach 
+                            <img src="{{asset('public/frontend/img/feature/webcam.png') }}" alt="" />
+                        </div>
+                    </div>
+                    <div class="col-lg-5 col-sm-6">
+                        <div class="single_feature_post_text">
+                            <p>Sản phẩm hành trình </p>
+                            <h3>Phương tiện giao thông</h3>
+                            @foreach($loai3 as $value)
+                                <a href="{{route('frontend.loai',['all' => $value->tenloai_slug])}}" class="feature_btn"
+                                    >Khám phá ngay   <i class="fas fa-play"></i
+                                ></a>
+                            @endforeach 
+                            <img src="{{asset('public/frontend/img/feature/hanhtrinh.png') }}" alt="" />
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-sm-6">
+                        <div class="single_feature_post_text">
+                            <p>Sản phẩm ngoài trời</p>
+                            <h3>Giám sát ngoài trời</h3>
+                            @foreach($loai4 as $value)
+                                <a href="{{route('frontend.loai',['all' => $value->tenloai_slug])}}" class="feature_btn"
+                                    >Khám phá ngay  <i class="fas fa-play"></i
+                                ></a>
+                            @endforeach 
+                            <img src="{{asset('public/frontend/img/feature/anninh.png') }}" alt="" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     <!-- product_list start-->
     <section class="product_list section_padding">
         <div class="container">
-            @if(session()->has('status'))
-                <div class="alert alert-success">
-                    {{ session()->get('status') }}
-                </div>
-            @endif
+           
             <div class="row justify-content-center">
                 <div class="col-lg-12">
                     <div class="section_tittle text-center">
@@ -104,12 +165,13 @@
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="single_product_item">
                                         <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:210px;" alt=""></a>
-                                        <h4 class="namesanpham"><a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" >{{ $value->tensanpham }}</a></h4>
-                                           
+                                        <h4 class="namesanpham"><a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><?php echo Str::limit($value->tensanpham, 50); ?></a></h4>
                                         <div class="single_product_text">
-                                        <h3 class="gia">{{ number_format($value->dongia) }} .vnd</h3>
-                                            <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="add_cart">+ Thêm vào giỏ</a>
-                                            @if (Auth::check())<a class="d-flex justify-content-end" href="{{route('khachhang.sanphamthem',['tensanpham_slug'=>$value->tensanpham_slug])}}"> <i class="ti-heart"></i></a>@endif
+                                             <h3 class="gia">{{ number_format($value->dongia) }} .vnd</h3>
+                                             <div style="display:flex">
+                                                <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="add_cart">+ Thêm vào giỏ</a>
+                                                @if (Auth::check())<a class="ml-4 add_cart d-flex justify-content-end" href="{{route('khachhang.sanphamthem',['tensanpham_slug'=>$value->tensanpham_slug])}}"><i class="ti-heart"></i></a>@endif
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -167,7 +229,7 @@
                         <div class="single_product_item">
                             <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" >  <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:230px;" alt=""></a>
                             <div class="single_product_text">
-                                <h4>{{ $value->tensanpham }}</h4>
+                                <h4><?php echo Str::limit($value->tensanpham, 45); ?></h4>
                                 <h3>{{ number_format($value->dongia) }} .vnd</h3>
                             </div>
                         </div>
@@ -209,7 +271,7 @@
                 <div class="col-lg-12">
                   @foreach($locth as $value)
                         <div class="single_client_logo">
-                            <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:100px;width:100px;"alt="">
+                        <a href="{{route('frontend.thuonghieu',['all' => $value->tenthuonghieu_slug])}}"><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:70px;width:110px;"alt=""></a>
                         </div>
                     @endforeach
                     <!-- <div class="single_client_logo">
@@ -249,6 +311,7 @@
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 500;
+  margin-bottom: 14px;
   display: block;
   margin-top: 10px;
   -webkit-transition: 0.5s;

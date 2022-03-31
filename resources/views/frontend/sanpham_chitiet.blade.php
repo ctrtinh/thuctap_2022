@@ -22,6 +22,11 @@
   <!--================Single Product Area =================-->
   <div class="product_image_area section_padding">
     <div class="container">
+    @if(session()->has('status'))
+                <div class="alert alert-success">
+                    {{ session()->get('status') }}
+                </div>
+            @endif
       <div class="row s_product_inner justify-content-between">
         <div class="col-lg-7 col-xl-7">
           <div class="product_slider_img">
@@ -80,7 +85,7 @@
        
       </ul>
       <div class="tab-content" id="myTabContent">
-        <div class="tab-pane fade" id="home" role="tabpanel" aria-labelledby="home-tab">
+        <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
         <p>{!!html_entity_decode($sanpham->motasanpham)!!}</p>
          
         </div>
@@ -122,7 +127,7 @@
             <div class="single_product_item">
               <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:200px;" alt=""></a>
               <div class="single_product_text">
-                <h4>{{ $value->tensanpham }}</h4>
+                <h4><?php echo Str::limit($value->tensanpham, 45); ?></h4>
                 <h3>{{ number_format($value->dongia) }} .vnd</h3>
               </div>
             </div>

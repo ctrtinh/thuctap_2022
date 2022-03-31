@@ -39,33 +39,34 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="left_sidebar_area">
+                        <aside class="left_widgets p_filter_widgets">
+                            <div class="l_w_title">
+                                <h3>Loại Sản Phẩm</h3>
+                            </div>
+                            <div class="widgets_inner">
+                                <ul class="list">
+                                    @foreach($locloai as $value)
+                                    <li>
+                                        <a href="{{route('frontend.loai',['all' => $value->tenloai_slug])}}">{{ $value->tenloai }}</a>
+                                    </li>
+                                    @endforeach
+                                </ul>
+                                <hr>
+                            </div>
+                        </aside>
                     <aside class="left_widgets p_filter_widgets">
                         <div class="l_w_title">
                             <h3>Thương Hiệu</h3>
                         </div>
                         <div class="widgets_inner">    
-                                <ul class="list">
-                                 @foreach($locth as $value)
-                                    <li>
-                                        <a href="{{route('frontend.thuonghieu',['all' => $value->tenthuonghieu_slug])}}">{{ $value->tenthuonghieu }}</a> 
-                                    </li>
-                                    @endforeach
-                                </ul>
-                        </div>
-                    </aside>
-
-                    <aside class="left_widgets p_filter_widgets">
-                        <div class="l_w_title">
-                            <h3>Loại Camera</h3>
-                        </div>
-                        <div class="widgets_inner">
                             <ul class="list">
-                                @foreach($locloai as $value)
+                                @foreach($locth as $value)
                                 <li>
-                                    <a href="{{route('frontend.loai',['all' => $value->tenloai_slug])}}">{{ $value->tenloai }}</a>
+                                    <a href="{{route('frontend.thuonghieu',['all' => $value->tenthuonghieu_slug])}}">{{ $value->tenthuonghieu }}</a> 
                                 </li>
                                 @endforeach
                             </ul>
+                            <hr>
                         </div>
                     </aside>
 
@@ -159,13 +160,15 @@
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" > <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:210px;" alt=""></a>
-                                    <h4 class="namesanpham"><a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" >{{ $value->tensanpham }}</a> </h4>
+                                    <h4 class="namesanpham"><a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><?php echo Str::limit($value->tensanpham, 50); ?></a> </h4>
                                     
                                     <div class="single_product_text">
-                                    <h3 class="gia">{{ number_format($value->dongia) }} .vnd</h3>
-                                    <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="add_cart">+ Thêm vào giỏ</a>
-                                    @if (Auth::check())<a class="d-flex justify-content-end" href="{{route('khachhang.sanphamthem',['tensanpham_slug'=>$value->tensanpham_slug])}}"><i class="ti-heart"></i></a>@endif
-                                </div>
+                                        <h3 class="gia">{{ number_format($value->dongia) }} .vnd</h3>
+                                        <div style="display:flex">
+                                            <a href="{{ route('frontend.giohang.them', ['tensanpham_slug' => $value->tensanpham_slug]) }}" class="add_cart">+ Thêm vào giỏ</a>
+                                            @if (Auth::check())<a class="ml-4 add_cart d-flex justify-content-end" href="{{route('khachhang.sanphamthem',['tensanpham_slug'=>$value->tensanpham_slug])}}"><i class="ti-heart"></i></a>@endif
+                                        </div>
+                                    </div>
                             </div>  
                         </div>
                     @endforeach 
@@ -205,7 +208,7 @@
                     <div class="single_product_item">
                     <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}"style="height:200px;" alt=""></a>
                         <div class="single_product_text">
-                            <h4>{{ $value->tensanpham }}</h4>
+                            <h4><?php echo Str::limit($value->tensanpham, 45); ?></h4>
                             <h3>{{ number_format($value->dongia) }} .vnd</h3>
                         </div>
                     </div>
@@ -222,6 +225,7 @@
   text-transform: uppercase;
   font-size: 16px;
   font-weight: 500;
+  margin-bottom: 14px;
   display: block;
   margin-top: 10px;
   -webkit-transition: 0.5s;

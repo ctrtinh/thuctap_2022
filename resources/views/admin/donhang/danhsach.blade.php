@@ -178,7 +178,7 @@
                         </td>
                         <td class="text-center"><a href="{{ route('admin.donhang.chitiet', ['id' => $value->id]) }}"><i class="fas fa-info"></i></a></td>
                         <td class="text-center"><a href="{{ route('admin.donhang.sua', ['id' => $value->id]) }}"><i class="fas fa-edit"></i></a></td>
-                        <td class="text-center"><a href="{{ route('admin.donhang.xoa', ['id' => $value->id]) }}"><i class="fas fa-trash-alt text-danger"></i></a></td>
+                        <td class="text-center"><a href="{{ route('admin.donhang.xoa', ['id' => $value->id]) }}" onclick="return confirm('Bạn có muốn xóa đơn hàng {{ $value->User->name }} không?')"><i class="fas fa-trash-alt text-danger"></i></a></td>
                     </tr>
                     @endforeach
                 </tbody>

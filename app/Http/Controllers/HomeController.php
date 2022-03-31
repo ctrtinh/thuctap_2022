@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\SanPham;
 use App\Models\HinhAnh;
 use App\Models\BaiViet;
+use App\Models\Lienhe;
 use App\Models\BinhLuan;
 use App\Models\ChuDe;
 use App\Models\DonHang;
@@ -30,7 +31,11 @@ class HomeController extends Controller
 
     public function getHome()
     {
-
+        
+        $loai1 = Loai::where('id', 1)->get();
+        $loai2 = Loai::where('id', 2)->get();
+        $loai3 = Loai::where('id', 3)->get();
+        $loai4 = Loai::where('id', 4)->get();
 
         $sanpham = SanPham::select( 'sanpham.*',
         DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
@@ -56,11 +61,11 @@ class HomeController extends Controller
         ->where('sanpham.soluong','>',0)
         ->paginate(8);
 
-        return view('frontend.home', compact('topsanpham', 'sanphammoi', 'sanpham'));
+        return view('frontend.home', compact('topsanpham', 'sanphammoi', 'sanpham', 'loai1', 'loai2', 'loai3', 'loai4'));
 
     }
 
-    public function getIndex($all = '')
+    public function getIndex()
     {
        
 
@@ -94,9 +99,31 @@ class HomeController extends Controller
     {
         return view('frontend.dangnhap');
     }
-    
+
     public function getLienHe()
     {
+    
+        return view('frontend.lienhe');
+    }
+    
+    public function postLienHe(Request $request)
+    {
+        $this->validate($request, [
+            'hovaten' => ['required', 'string', 'max:191'],
+            'email' => ['required', 'string', 'max:191'],
+            'sodienthoai' => ['required', 'string', 'max:12', 'min:10'],
+            'noidung' => ['required']
+        ]);
+        $lienhe = LienHe::all();
+
+        $orm = new LienHe();
+        $orm->hovaten = $request->hovaten;
+        $orm->email = $request->email;
+        $orm->sodienthoai = $request->sodienthoai;
+        $orm->noidung = $request->noidung;
+        $orm->save();
+        session()->flash('success', 'Liên hệ của bạn đã được ghi nhận');
+       
         return view('frontend.lienhe');
     }
 
@@ -464,7 +491,7 @@ class HomeController extends Controller
             ]
         ]);
 
-        return redirect()->route('frontend');
+        return redirect()->route('frontend')->with('status', 'Đã thêm sản phẩm vào giỏ hàng');
     }
     public function getGioHang_Giam($row_id)
     {

@@ -38,7 +38,7 @@
           <div class="row align-items-center">
               <div class="col-lg-12">
                   <nav class="navbar navbar-expand-lg navbar-light">
-                      <a class="navbar-brand" href="{{route('frontend')}}"> <img src="{{asset('public/frontend/img/logocamera (1) (2).png')}}" alt="logo"> </a>
+                      <a class="navbar-brand" href="{{route('frontend')}}"> <img src="{{asset('public/frontend/img/Coffee Please (3).png')}}" alt="logo"> </a>
                       <button class="navbar-toggler" type="button" data-toggle="collapse"
                           data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                           aria-expanded="false" aria-label="Toggle navigation">
@@ -75,6 +75,18 @@
                                   </div>
                               </li>
                               <li class="nav-item dropdown">
+                                  <a class="nav-link dropdown-toggle" href="{{route('frontend.dungluong',['all'])}}" id="navbarDropdown_3"
+                                      role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      Dung lượng
+                                  </a>
+                                  <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
+                                          @foreach($dungluong as $value)
+                                              <a class="dropdown-item" href="{{route('frontend.dungluong',['all' => $value->dungluong_slug])}}"> {{ $value->dungluong }}</a>
+                                          @endforeach    
+                                      
+                                  </div>
+                              </li>
+                              <li class="nav-item dropdown">
                           
                               
                               <li class="nav-item">
@@ -89,9 +101,9 @@
                           <a id="search_1" href="javascript:void(0)"><i class="ti-search"></i></a>
                           <!-- @if (Auth::check())<a href="{{route('khachhang.danhsachsanpham')}}"> <i class="ti-heart"></i> <sup class="badge rounded-circle bg-white">@if(!empty($sanphamyeuthich)){{ $sanphamyeuthich->count()  }} @endif  <sup></a>@endif -->
                             @if (!isset( Auth::user()->name))
-                              <a href="{{route('khachhang.dangnhap')}}"><i class="ti-user"></i></a>
-                            @else
-                              <a href="{{route('khachhang')}}"><i class="ti-user"></i></a>
+                                <a href="{{route('khachhang.dangnhap')}}"><i class="ti-user"></i></a>
+                              @else          
+                                <a href="{{route('khachhang')}}"><i class="ti-user"></i></a>
                             @endif
                               <a href="{{route('frontend.giohang')}}">
                                   <i class="fas fa-cart-plus"></i><sup class="badge rounded-circle bg-white">{{ Cart::count() ?? 0 }}</sup>

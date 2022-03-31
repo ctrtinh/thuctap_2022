@@ -7,6 +7,7 @@ use App\Http\Controllers\VerifyEmailController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoaiController;
+use App\Http\Controllers\LienHeController;
 use App\Http\Controllers\DungLuongController;
 use App\Http\Controllers\ThuongHieuController;
 use App\Http\Controllers\TinhTrangController;
@@ -54,6 +55,8 @@ Route::post('/binh-luan/{tieude_slug}', [HomeController::class, 'postBinhLuan'])
 
 // Liên hệ
 Route::get('/lien-he', [HomeController::class, 'getLienHe'])->name('frontend.lienhe');
+Route::post('/lien-he', [HomeController::class, 'postLienHe'])->name('frontend.lienhe');
+
 
 // Trang giỏ hàng
 Route::get('/gio-hang', [HomeController::class, 'getGioHang'])->name('frontend.giohang');
@@ -63,6 +66,7 @@ Route::get('/gio-hang/xoa', [HomeController::class, 'getGioHang_XoaTatCa'])->nam
 Route::get('/gio-hang/xoa/{row_id}', [HomeController::class, 'getGioHang_Xoa'])->name('frontend.giohang.xoa');
 Route::get('/gio-hang/giam/{row_id}', [HomeController::class, 'getGioHang_Giam'])->name('frontend.giohang.giam');
 Route::get('/gio-hang/tang/{row_id}', [HomeController::class, 'getGioHang_Tang'])->name('frontend.giohang.tang');
+
 
 // Trang đặt hàng
 Route::get('/dat-hang', [HomeController::class, 'getDatHang'])->name('frontend.dathang');
@@ -138,6 +142,12 @@ Route::get('/loai/sua/{id}', [LoaiController::class, 'getSua'])->name('loai.sua'
 Route::post('/loai/sua/{id}', [LoaiController::class, 'postSua'])->name('loai.sua')->middleware('nhanvien');
 Route::get('/loai/xoa/{id}', [LoaiController::class, 'getXoa'])->name('loai.xoa')->middleware('nhanvien');
 
+// Quản lý liên hệ
+Route::get('/lienhe', [LienHeController::class, 'getDanhSach'])->name('lienhe')->middleware('nhanvien');
+Route::get('/lienhe/xoa/{id}', [LienHeController::class, 'getXoa'])->name('lienhe.xoa')->middleware('nhanvien');
+Route::get('/lienhe/phanhoi/{id}', [LienHeController::class, 'getPhanHoi'])->name('lienhe.phanhoi')->middleware('nhanvien');
+Route::post('/lienhe/phanhoi/{id}', [LienHeController::class, 'postPhanHoi'])->name('lienhe.phanhoi')->middleware('nhanvien');
+
  // Quản lý Thương Hiệu
  Route::get('/thuonghieu', [ThuongHieuController::class, 'getDanhSach'])->name('thuonghieu')->middleware('nhanvien');
  Route::get('/thuonghieu/them', [ThuongHieuController::class, 'getThem'])->name('thuonghieu.them')->middleware('nhanvien');
@@ -172,10 +182,12 @@ Route::post('/nguoidung/them', [NguoiDungController::class, 'postThem'])->name('
 Route::get('/nguoidung/sua/{id}', [NguoiDungController::class, 'getSua'])->name('nguoidung.sua')->middleware('admin');
 Route::post('/nguoidung/sua/{id}', [NguoiDungController::class, 'postSua'])->name('nguoidung.sua')->middleware('admin');
 Route::get('/nguoidung/xoa/{id}', [NguoiDungController::class, 'getXoa'])->name('nguoidung.xoa')->middleware('admin');
+Route::get('/nguoidung/kichhoat/{id}', [NguoiDungController::class, 'getKichHoat'])->name('nguoidung.kichhoat')->middleware('admin');
 // Route::post('/nguoidung/nhap', [NguoiDungController::class, 'postNhap'])->name('nguoidung.nhap')->middleware('admin');
 Route::post('/nguoidung/xuat', [NguoiDungController::class, 'postXuat'])->name('nguoidung.xuat')->middleware('admin');
 Route::get('/nguoidung/info/{name}', [NguoiDungController::class, 'getInfo'])->name('nguoidung.info')->middleware('nhanvien');
 Route::post('/nguoidung/sua/info/{id}', [NguoiDungController::class, 'postSuaInfo'])->name('nguoidung.sua.info')->middleware('nhanvien');
+
 
 // Quản lý Sản phẩm
 Route::get('/sanpham', [SanPhamController::class, 'getDanhSach'])->name('sanpham')->middleware('nhanvien');

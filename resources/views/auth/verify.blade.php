@@ -5,7 +5,7 @@
 <div class="container mt-5 mb-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="card mt-5">
                 <div class="card-header">{{ __('Xác thực email của bạn') }}</div>
 
                 <div class="card-body">

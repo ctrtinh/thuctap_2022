@@ -168,4 +168,13 @@ class NguoiDungController extends Controller
         return redirect()->route('admin.nguoidung.info',Auth::user()->name)->with('status', 'Cập nhật  thành công');
     }
 
+    public function getKichHoat($id)
+    {
+        $orm = User::find($id);
+        $orm->kichhoat = 1 - $orm->kichhoat; 
+        $orm->save();
+
+        return redirect()->route('admin.nguoidung');
+    }
+
 }
