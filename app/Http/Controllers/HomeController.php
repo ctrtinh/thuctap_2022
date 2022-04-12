@@ -12,7 +12,6 @@ use App\Models\ChuDe;
 use App\Models\DonHang;
 use App\Models\Loai;
 use App\Models\ThuongHieu;
-use App\Models\DungLuong;
 use App\Models\DonHang_ChiTiet;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -40,7 +39,7 @@ class HomeController extends Controller
         $sanpham = SanPham::select( 'sanpham.*',
         DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
         ->where('sanpham.hienthi',1)
-        ->where('sanpham.soluong','>',1)    
+        ->where('sanpham.soluong','>',0)    
         ->paginate(9);
 
 
@@ -72,7 +71,7 @@ class HomeController extends Controller
         $sanpham = SanPham::select( 'sanpham.*',
         DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
         ->where('sanpham.hienthi',1)
-        ->where('sanpham.soluong','>',1)    
+        ->where('sanpham.soluong','>',0)    
         ->paginate(9);
 
         $topsanpham = SanPham::leftJoin('donhang_chitiet', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
@@ -728,7 +727,7 @@ class HomeController extends Controller
             DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
             ->where('sanpham.hienthi',1)
             ->paginate(9);
-            $session_title = "Dung lượng";
+            $session_title = $all;
 
             $topsanpham = SanPham::leftJoin('donhang_chitiet', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
             ->select('sanpham.*',
@@ -746,12 +745,12 @@ class HomeController extends Controller
         }
         else
         {
-            $dungluong = DungLuong::where('dungluong_slug',$all)->first();
+            // $dungluong = DungLuong::where('dungluong_slug',$all)->first();
             $sanpham = SanPham::select( 'sanpham.*',
                 DB::raw('(select hinhanh from hinhanh where sanpham_id = sanpham.id  limit 1) as hinhanh'))
-                ->where('sanpham.hienthi',1)->where('dungluong_id',$dungluong->id)
+                ->where('sanpham.hienthi',1)->where('tendungluong', $all)
                 ->paginate(9);
-            $session_title = $dungluong->dungluong;
+            $session_title = $all;
 
 
             $topsanpham = SanPham::leftJoin('donhang_chitiet', 'sanpham.id', '=', 'donhang_chitiet.sanpham_id')
@@ -765,7 +764,7 @@ class HomeController extends Controller
             ->where('sanpham.soluong','>',0)
             ->limit(10)->get();
 
-            return view('frontend.thuonghieu',compact('sanpham','session_title', 'topsanpham'));
+            return view('frontend.thuonghieu',compact('sanpham','topsanpham','session_title'));
 
         }
  

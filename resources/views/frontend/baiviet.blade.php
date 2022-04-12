@@ -42,7 +42,7 @@
                                 <p>{{$value->tomtat}}</p>
                                 <ul class="blog-info-link">
                                     <li><a href="#"><i class="far fa-user"></i> {{$value->User->name}}</a></li>
-                                    <li><a href="#"><i class="far fa-comments"></i> {{$value->binhluan}} Bình luận</a></li>
+                                    <li><a href="#"><i class="far fa-comments"></i> {{$value->BinhLuan->count()}} Bình luận</a></li>
                                 </ul>
                             </div>
                         </article>

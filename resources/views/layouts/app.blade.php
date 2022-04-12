@@ -70,7 +70,7 @@
                         <a class="collapse-item" href="{{ route('admin.loai') }}">Loại</a>
                         <a class="collapse-item" href="{{ route('admin.thuonghieu') }}">Thương hiệu</a>
                         <a class="collapse-item" href="{{ route('admin.tinhtrang') }}">Tình trạng</a>
-                        <a class="collapse-item" href="{{ route('admin.dungluong') }}">Dung lượng</a>
+                       
                         <a class="collapse-item" href="{{ route('admin.lienhe') }}">Liên hệ</a>
                     </div>
                 </div>

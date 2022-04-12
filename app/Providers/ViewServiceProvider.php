@@ -6,7 +6,7 @@ use App\Models\ThuongHieu;
 use App\Models\Loai;
 use Illuminate\Support\Facades\Auth;
 use App\Models\SanPhamYeuThich;
-use App\Models\DungLuong;
+use App\Models\SanPham;
 use App\View\Composers\ProfileComposer;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
@@ -48,7 +48,8 @@ class ViewServiceProvider extends ServiceProvider
             $view->with('loai',$loai);
         });
         View::composer('layouts.frontend', function ($view) {
-            $dungluong = DungLuong::orderBy('dungluong')->get();
+            $dungluong = SanPham::select('tendungluong')->orderBy('tendungluong','asc')->where('tendungluong','<>','')->distinct()->get();
+           // dd( $dungluong);
             $view->with('dungluong',$dungluong);
         });
         View::composer('frontend.thuonghieu', function ($view) {
@@ -61,7 +62,7 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer('frontend.thuonghieu', function ($view) {
-            $locdungluong = DungLuong::orderBy('dungluong')->get();
+            $locdungluong = SanPham::select('tendungluong')->orderBy('tendungluong','asc')->where('tendungluong','<>','')->distinct()->get();
             $view->with('locdungluong',$locdungluong);
         });
        
@@ -76,7 +77,7 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer('frontend.sanpham', function ($view) {
-            $locdungluong = DungLuong::orderBy('dungluong')->get();
+            $locdungluong = SanPham::select('tendungluong')->orderBy('tendungluong','asc')->where('tendungluong','<>','')->distinct()->get();
             $view->with('locdungluong',$locdungluong);
         });
        
@@ -91,7 +92,7 @@ class ViewServiceProvider extends ServiceProvider
         });
 
         View::composer('frontend.index', function ($view) {
-            $locdungluong = DungLuong::orderBy('dungluong')->get();
+            $locdungluong = SanPham::select('tendungluong')->orderBy('tendungluong','asc')->where('tendungluong','<>','')->distinct()->get();
             $view->with('locdungluong',$locdungluong);
         });
        

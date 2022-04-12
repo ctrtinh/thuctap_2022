@@ -21,10 +21,10 @@
                     <th width="5%">#</th>
                     <th width="10%">Thương hiệu</th>
                     <th width="10%">Loại </th>
-                    <th width="10%">Dung lượng </th>
                     <th width="20%">Tên sản phẩm</th>
                     <th width="20%">Tên sản phẩm không dấu</th>
                     <th width="7%">Số lượng</th>
+                    <th width="10%">Dung lượng</th>
                     <th width="10%">Đơn giá</th>
                     <th width="10%">Hiển thị</th>
                     <th width="8%">Hình ảnh</th>
@@ -38,10 +38,15 @@
                     <td>{{ $loop->iteration }}</td>
                     <td>{{ $value->ThuongHieu->tenthuonghieu }}</td>
                     <td>{{ $value->Loai->tenloai }}</td>
-                    <td>{{ $value->DungLuong->dungluong }}</td>
                     <td>{{ $value->tensanpham }}</td>
                     <td>{{ $value->tensanpham_slug }}</td>
                     <td class="text-end">{{ $value->soluong }}</td>
+                    <td>    @if($value->tendungluong == null)
+                                Không có
+                            @else
+                                {{$value->tendungluong}}
+                            @endif
+                    </td>
                     <td class="text-end">{{ number_format($value->dongia) }}</td>
                     <td class="text-center">
                             @if($value->hienthi == 1)

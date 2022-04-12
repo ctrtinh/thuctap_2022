@@ -50,12 +50,12 @@
 
                           <p>
                             <i class="fas fa-eye mr-1"></i> Lượt xem ({{$value->luotxem}})
-                            @if(empty($binhluan))
-                              <a  href="{{ route('admin.binhluan', ['tieude_slug' => $value->tieude_slug]) }}"  class="link-black text-sm" style="text-decoration:none;"><i class="far fa-comments mr-1"></i> Bình luận ( {{ $binhluan->count()}})</a>
-                            @else
-                              <a  href=""  class="link-black text-sm" style="text-decoration:none;"><i class="far fa-comments mr-1"></i> Bình luận (0)</a>
+                           
+                              <a  href="{{ route('admin.binhluan', ['tieude_slug' => $value->tieude_slug]) }}"  class="link-black text-sm" style="text-decoration:none;"><i class="far fa-comments mr-1"></i> Bình luận ( {{ $value->BinhLuan->count()}})</a>
+                           
+                              
 
-                            @endif
+                         
                               <span class="float-right">
                               <a href="{{ route('admin.baiviet.sua.info', ['id' => $value->id]) }}" class="link-black text-sm" style="text-decoration:none;">
                                 <i class="fas fa-edit text-info"></i> Sửa

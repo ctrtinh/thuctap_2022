@@ -138,14 +138,14 @@ class NguoiDungController extends Controller
     {
         $baiviet = BaiViet::where('user_id',Auth::user()->id)->get();
         
-        foreach($baiviet as $value)
-        {
-            $binhluan = BinhLuan::where('baiviet_id', $value->id)->get();
-        }
+        // foreach($baiviet as $value)
+        // {
+        //     $binhluan = BinhLuan::where('baiviet_id', $value->id)->get();
+        // }
 
-        if(!empty($binhluan))
-            return view('admin.nguoidung.info',compact('baiviet','binhluan'));
-        else
+        // if(!empty($binhluan))
+        //     return view('admin.nguoidung.info',compact('baiviet','binhluan'));
+        // else
             return view('admin.nguoidung.info',compact('baiviet'));
 
     }

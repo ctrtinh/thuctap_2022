@@ -6,8 +6,8 @@
                 <div class="col-lg-8">
                     <div class="breadcrumb_iner">
                         <div class="breadcrumb_iner_item">
-                            <h2>Đăng Nhập</h2>
-                            <p>Trang Chủ <span>-</span> Đăng Nhập</p>
+                            <h2>Đăng Ký</h2>
+                            <p>Trang Chủ <span>-</span> Đăng Ký</p>
                         </div>
                     </div>
                 </div>

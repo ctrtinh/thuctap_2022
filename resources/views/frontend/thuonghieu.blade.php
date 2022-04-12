@@ -78,7 +78,7 @@
                             <ul class="list">
                                 @foreach($locdungluong as $value)
                                     <li>
-                                        <a href="{{route('frontend.dungluong',['all' => $value->dungluong_slug])}}">{{ $value->dungluong }}</a>
+                                        <a href="{{route('frontend.dungluong',['all' => $value->tendungluong])}}">{{ $value->tendungluong }} GB</a>
                                     </li>
                                 @endforeach 
                             </ul>
@@ -160,7 +160,7 @@
                         <div class="col-lg-4 col-sm-6">
                             <div class="single_product_item">
                                 <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" > <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:210px;" alt=""></a>
-                                    <h4 class="namesanpham"><a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><?php echo Str::limit($value->tensanpham, 50); ?></a> </h4>
+                                    <h4 class="namesanpham"><a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><?php echo Str::limit($value->tensanpham, 40); ?></a> </h4>
                                     
                                     <div class="single_product_text">
                                         <h3 class="gia">{{ number_format($value->dongia) }} .vnd</h3>
@@ -208,7 +208,7 @@
                     <div class="single_product_item">
                     <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}"style="height:200px;" alt=""></a>
                         <div class="single_product_text">
-                            <h4><?php echo Str::limit($value->tensanpham, 45); ?></h4>
+                            <h4><?php echo Str::limit($value->tensanpham, 40); ?></h4>
                             <h3>{{ number_format($value->dongia) }} .vnd</h3>
                         </div>
                     </div>

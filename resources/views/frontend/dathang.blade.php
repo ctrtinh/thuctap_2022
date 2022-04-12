@@ -126,7 +126,7 @@
                 </li>
                 @foreach(Cart::content() as $value)
                 <li>
-                  <a href="#"> <?php echo Str::limit($value->name, 30); ?> 
+                  <a href="#"> <?php echo Str::limit($value->name, 25); ?> 
                     <span class="middle">x {{ $value->qty }}</span>
                     <span class="last">{{ number_format($value->price * $value->qty) }}</span>
                   </a>

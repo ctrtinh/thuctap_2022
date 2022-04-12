@@ -34,10 +34,10 @@ class SanPhamImport implements ToModel, WithHeadingRow
         $sanpham = SanPham::create([
             'loai_id' => $row['loai'],
             'thuonghieu_id' => $row['thuong_hieu'],
-            'dungluong_id' => $row['dung_luong'],
             'tensanpham' => $row['ten_san_pham'],
             'tensanpham_slug' => Str::slug($row['ten_san_pham']),
             'soluong' => $row['so_luong'],
+            'tendungluong' => $row['ten_dung_luong'],
             'dongia' => $row['don_gia'],
             'cauhinh' => $row['cau_hinh'],
             'motasanpham' => $row['mo_ta'],

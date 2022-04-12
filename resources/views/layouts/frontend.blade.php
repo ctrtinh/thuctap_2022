@@ -52,8 +52,8 @@
                               </li>
                               <li class="nav-item dropdown">
                                   <a class="nav-link dropdown-toggle" href="{{route('frontend.thuonghieu',['all'])}}" id="navbarDropdown_1"
-                                      role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    Thương hiệu
+                                      role="button"  aria-haspopup="true" aria-expanded="false">
+                                    Thương hiệu 
                                   </a>
                                   <div class="dropdown-menu" aria-labelledby="navbarDropdown_1">
                                   @foreach($type as $value)
@@ -64,7 +64,7 @@
                               </li>
                               <li class="nav-item dropdown">
                                   <a class="nav-link dropdown-toggle" href="{{route('frontend.loai',['all'])}}" id="navbarDropdown_3"
-                                      role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      role="button"  aria-haspopup="true" aria-expanded="false">
                                       Loại Camrea
                                   </a>
                                   <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
@@ -81,7 +81,7 @@
                                   </a>
                                   <div class="dropdown-menu" aria-labelledby="navbarDropdown_2">
                                           @foreach($dungluong as $value)
-                                              <a class="dropdown-item" href="{{route('frontend.dungluong',['all' => $value->dungluong_slug])}}"> {{ $value->dungluong }}</a>
+                                              <a class="dropdown-item" href="{{route('frontend.dungluong',['all' => $value->tendungluong])}}"> {{ $value->tendungluong }} GB</a>
                                           @endforeach    
                                       
                                   </div>

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
 use App\Models\ThuongHieu;
-use App\Models\DungLuong;
+// use App\Models\DungLuong;
 use App\Models\Loai;
 use App\Models\HinhAnh;
 use Illuminate\Support\Str;
@@ -61,9 +61,9 @@ class SanPhamController extends Controller
     {
         $thuonghieu = ThuongHieu::all();
         $loai = Loai::all();
-        $dungluong = DungLuong::all();
+        // $dungluong = DungLuong::all();
 
-        return view('admin.sanpham.them', compact('thuonghieu','loai','dungluong'));
+        return view('admin.sanpham.them', compact('thuonghieu','loai'));
     }
     
     public function postThem(Request $request)
@@ -71,7 +71,7 @@ class SanPhamController extends Controller
         $this->validate($request,[
            'thuonghieu_id' => ['required'],
            'loai_id' => ['required'],
-           'dungluong_id' => ['required'],
+        //    'dungluong_id' => ['required'],
            'cauhinh' => ['required'],
            'tensanpham' =>['required','max:255','unique:sanpham'],
            'soluong' =>['required','numeric','min:1'],
@@ -80,7 +80,7 @@ class SanPhamController extends Controller
        $messages = [
         'thuonghieu_id.required' => 'Chưa chọn thương hiêu.',
         'loai_id.required' => 'Chưa chọn loại.',
-        'dungluong_id.required' => 'Chưa chọn dung lượng.',
+        // 'dungluong_id.required' => 'Chưa chọn dung lượng.',
         'tensanpham.required' => 'Tên sản phẩm không được bỏ trống.',
         'soluong.required' => 'Số lượng không được bỏ trống.',
         'dongia.required' => 'Đơn giá không được bỏ trống.',
@@ -93,11 +93,12 @@ class SanPhamController extends Controller
         $orm = new SanPham();
         $orm->thuonghieu_id = $request->thuonghieu_id;
         $orm->loai_id = $request->loai_id;
-        $orm->dungluong_id = $request->dungluong_id;
+        // $orm->dungluong_id = $request->dungluong_id;
         $orm->tensanpham = $request->tensanpham;
         $orm->tensanpham_slug = Str::slug($request->tensanpham, '-'); 
         $orm->soluong = $request->soluong;
         $orm->dongia = $request->dongia;
+        $orm->tendungluong = $request->tendungluong;
         $orm->cauhinh = $request->cauhinh;
         $orm->motasanpham = $request->motasanpham;
         $orm->save();
@@ -127,11 +128,11 @@ class SanPhamController extends Controller
         $sanpham = SanPham::find($id);
         $thuonghieu = ThuongHieu::all();
         $loai = Loai::all();
-        $dungluong = DungLuong::all();
+        // $dungluong = DungLuong::all();
         $hinhanh = HinhAnh::where('sanpham_id', $id)->get();
         $img = HinhAnh::where('sanpham_id', $id)->first();
         
-        return view('admin.sanpham.sua', compact('sanpham','thuonghieu','hinhanh','loai','img','dungluong'));
+        return view('admin.sanpham.sua', compact('sanpham','thuonghieu','hinhanh','loai','img'));
     }
     
     public function postSua(Request $request, $id)
@@ -139,7 +140,7 @@ class SanPhamController extends Controller
         $this->validate($request,[
             'thuonghieu_id' => ['required'],
             'loai_id' => ['required'],
-            'dungluong_id' => ['required'],
+            // 'dungluong_id' => ['required'],
             'cauhinh' => ['required'],
             'tensanpham' =>['required','max:255','unique:sanpham,tensanpham,' .$id],
             'soluong' =>['required','numeric'],
@@ -149,10 +150,11 @@ class SanPhamController extends Controller
         $orm = SanPham::find($id);
         $orm->loai_id = $request->loai_id;
         $orm->thuonghieu_id = $request->thuonghieu_id;
-        $orm->dungluong_id = $request->dungluong_id;
+        // $orm->dungluong_id = $request->dungluong_id;
         $orm->tensanpham = $request->tensanpham;
         $orm->tensanpham_slug = Str::slug($request->tensanpham, '-');
         $orm->soluong = $request->soluong;
+        $orm->tendungluong = $request->tendungluong;
         $orm->dongia = $request->dongia;
         $orm->cauhinh = $request->cauhinh;
         $orm->motasanpham = $request->motasanpham;

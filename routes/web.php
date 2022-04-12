@@ -8,7 +8,6 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\LoaiController;
 use App\Http\Controllers\LienHeController;
-use App\Http\Controllers\DungLuongController;
 use App\Http\Controllers\ThuongHieuController;
 use App\Http\Controllers\TinhTrangController;
 use App\Http\Controllers\NguoiDungController;
@@ -158,13 +157,6 @@ Route::post('/lienhe/phanhoi/{id}', [LienHeController::class, 'postPhanHoi'])->n
  Route::post('/thuonghieu/nhap', [ThuongHieuController::class, 'postNhap'])->name('thuonghieu.nhap')->middleware('nhanvien');
  Route::get('/thuonghieu/xuat', [ThuongHieuController::class, 'getXuat'])->name('thuonghieu.xuat')->middleware('nhanvien');
 
- // Quản lý dung lượng sản phẩm
-Route::get('/dungluong', [DungLuongController::class, 'getDanhSach'])->name('dungluong')->middleware('nhanvien');
-Route::get('/dungluong/them', [DungLuongController::class, 'getThem'])->name('dungluong.them')->middleware('nhanvien');
-Route::post('/dungluong/them', [DungLuongController::class, 'postThem'])->name('dungluong.them')->middleware('nhanvien');
-Route::get('/dungluong/sua/{id}', [DungLuongController::class, 'getSua'])->name('dungluong.sua')->middleware('nhanvien');
-Route::post('/dungluong/sua/{id}', [DungLuongController::class, 'postSua'])->name('dungluong.sua')->middleware('nhanvien');
-Route::get('/dungluong/xoa/{id}', [DungLuongController::class, 'getXoa'])->name('dungluong.xoa')->middleware('nhanvien');
 
 // Quản lý Tình trạng đơn hàng
 Route::get('/tinhtrang', [TinhTrangController::class, 'getDanhSach'])->name('tinhtrang')->middleware('nhanvien');

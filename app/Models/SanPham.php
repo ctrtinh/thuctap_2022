@@ -14,12 +14,11 @@ class SanPham extends Model
     protected $fillable = [
         'loai_id',
         'thuonghieu_id',
-        'dungluong_id',
         'tensanpham',
         'tensanpham_slug',
-        'dungluong',
         'soluong',
         'dongia',
+        'tendungluong',
         'hinhanh',
         'cauhinh',
         'motasanpham',
@@ -35,10 +34,6 @@ class SanPham extends Model
         return $this->belongsTo(ThuongHieu::class, 'thuonghieu_id', 'id');
     }
 
-    public function DungLuong()
-    {
-        return $this->belongsTo(DungLuong::class, 'dungluong_id', 'id');
-    }
 
     public function HinhAnh()
     {

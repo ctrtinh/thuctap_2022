@@ -165,7 +165,7 @@
                                 <div class="col-lg-3 col-sm-6">
                                     <div class="single_product_item">
                                         <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:210px;" alt=""></a>
-                                        <h4 class="namesanpham"><a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><?php echo Str::limit($value->tensanpham, 50); ?></a></h4>
+                                        <h4 class="namesanpham"><a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" ><?php echo Str::limit($value->tensanpham, 40); ?></a></h4>
                                         <div class="single_product_text">
                                              <h3 class="gia">{{ number_format($value->dongia) }} .vnd</h3>
                                              <div style="display:flex">
@@ -229,7 +229,7 @@
                         <div class="single_product_item">
                             <a href="{{route('frontend.sanpham.chitiet',['tensanpham_slug' => $value->tensanpham_slug])}}" >  <img src="{{ env('APP_URL') . '/storage/app/' . $value->hinhanh }}" style="height:230px;" alt=""></a>
                             <div class="single_product_text">
-                                <h4><?php echo Str::limit($value->tensanpham, 45); ?></h4>
+                                <h4><?php echo Str::limit($value->tensanpham, 40); ?></h4>
                                 <h3>{{ number_format($value->dongia) }} .vnd</h3>
                             </div>
                         </div>

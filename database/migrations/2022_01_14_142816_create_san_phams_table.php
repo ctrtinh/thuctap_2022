@@ -11,13 +11,14 @@ class CreateSanPhamsTable extends Migration
     {
         Schema::create('sanpham', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('dungluong_id')->constrained('dungluong')->onDelete('cascade');
+            // $table->foreignId('dungluong_id')->constrained('dungluong')->onDelete('cascade');
             // $table->foreignId('thuonghieu_id')->constrained('thuonghieu')->onDelete('cascade'); 
             $table->foreignId('thuonghieu_id')->references('id')->on('thuonghieu')->onUpdate('cascade');
             $table->foreignId('loai_id')->constrained('loai')->onDelete('cascade');
             $table->string('tensanpham');
             $table->string('tensanpham_slug');
             $table->integer('soluong');
+            $table->integer('tendungluong')->nullable();
             $table->double('dongia');
             $table->text('cauhinh')->nullable();
             $table->text('motasanpham')->nullable();

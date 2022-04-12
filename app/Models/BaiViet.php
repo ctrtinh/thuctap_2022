@@ -13,7 +13,7 @@ class BaiViet extends Model
  
     public function BinhLuan()
     {
-        return $this->belongsTo(BinhLuan::class, 'baiviet_id', 'id');
+        return $this->hasMany(BinhLuan::class, 'baiviet_id', 'id');
     }
 
     public function User()

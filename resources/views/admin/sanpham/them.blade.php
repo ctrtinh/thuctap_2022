@@ -31,18 +31,7 @@
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror
                 </div> 
-                <div class="mb-3">
-                    <label class="form-label" for="dungluong_id">Dung Lượng </label>
-                    <select class="form-control @error('dungluong_id') is-invalid @enderror" name="dungluong_id" id="dungluong_id" value="{{ old('dungluong_id') }}"> 
-                        <option value="">-- Chọn dung lượng --</option>
-                        @foreach($dungluong as $value)
-                            <option value="{{ $value->id }}">{{ $value->dungluong }}</option>
-                        @endforeach
-                    </select>
-                    @error('dungluong_id')
-                        <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
-                    @enderror
-                </div> 
+
                 <div class="mb-3">
                     <label class="form-label" for="tensanpham">Tên camera </label>
                     <input type="text" class="form-control @error('tensanpham') is-invalid @enderror" id="tensanpham" name="tensanpham"  value="{{ old('tensanpham') }}" />
@@ -56,6 +45,11 @@
                     @error('soluong')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror
+                </div>  
+                <div class="mb-3">
+                    <label class="form-label" for="soluong">Dung lượng</label>
+                    <input type="number" class="form-control" id="tendungluong" name="tendungluong"  value="{{ old('tendungluong') }}"  />
+                    
                 </div>  
                 <div class="mb-3">
                     <label class="form-label" for="dongia">Đơn giá</label>
@@ -73,7 +67,7 @@
                 </div>  
                 <div class="mb-3">
                     <label class="form-label" for="dongia">Cấu hình</label>
-                    <textarea class="form-control" id="cauhinh" name="cauhinh"  value="{{ old('cauhinh') }}"></textarea>
+                    <textarea class="form-control @error('cauhinh') is-invalid @enderror" id="cauhinh" name="cauhinh"  value="{{ old('cauhinh') }}"></textarea>
                     @error('cauhinh')
                         <div class="invalid-feedback"><strong>{{ $message }}</strong></div>
                     @enderror

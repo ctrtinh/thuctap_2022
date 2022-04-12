@@ -46,8 +46,16 @@
             <h2>{{ number_format($sanpham->dongia )}} .vnd</h2>
             <ul class="list">
               <li>
+              @if($sanpham->tendungluong == null)
                 <a class="" href="#">
-                  <span>Dung lượng:</span> MicroSD  ≤ {{$sanpham->dungluong->dungluong}}</a>
+                  <span>Dung lượng:</span> Không có
+                 </a>
+                
+                 @else
+                 <a class="" href="#">
+                  <span>Dung lượng: </span> MicroSD ≥ {{$sanpham->tendungluong}} GB
+                 </a>
+                 @endif
               </li>
               <li>
                 <a href="#"> <span>Thương hiệu</span> : {{$sanpham->thuonghieu->tenthuonghieu}}</a>
@@ -58,7 +66,7 @@
               <form class="row contact_form"  method="get" action="{{ route('frontend.giohang.them.chitiet',['tensanpham_slug' => $sanpham->tensanpham_slug]) }}">
                 @csrf
                   <div class="product_count">
-                    <input class="input-number" name="qty" type="number" value="1" min="1" max="10">
+                    <input class="input-number" name="qty" type="number" value="1" min="1" max="{{$sanpham->soluong}}">
                   </div>
                   <button  type="submit"  class="btn_3 ml-2">Thêm vào giỏ</button>
               </form>
